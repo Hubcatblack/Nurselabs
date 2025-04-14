@@ -1,0 +1,27 @@
+body::before {
+    content: "";
+    position: fixed; /* Cover the entire viewport */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("https://iili.io/3aJCW42.jpg"); /*https://freeimage.host/*/
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-color: pink; /* Fallback color if image doesn't load */
+    opacity: 0.8;
+    z-index: -1; /* Place it behind the content */
+  }
+
+body {
+    position: relative; /* Needed for z-index on the ::before pseudo-element to work correctly */
+    color: black; /* Ensure text is readable */
+  }
+
+
+.b1 {
+    top: 50px;
+    width: 200px;
+
+}
