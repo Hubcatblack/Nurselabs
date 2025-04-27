@@ -1,21 +1,560 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Documents</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documents - NurseHub WVSU</title>
+    <link rel="stylesheet" href="Documents.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .document-card {
+            cursor: pointer;
+            position: relative; /* For positioning edit/remove buttons */
+        }
+        .edit-remove-buttons {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 5px;
+        }
+        .edit-remove-buttons button {
+            background: none;
+            border: none;
+            color: #6c757d;
+            cursor: pointer;
+            font-size: 0.9em;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        .edit-remove-buttons button:hover {
+            background-color: #f8f9fa;
+        }
+        .edit-form {
+            display: none;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+        }
+        .edit-form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .edit-form input[type="text"],
+        .edit-form textarea {
+            width: calc(100% - 12px);
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .edit-form button {
+            background-color: #007bff;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-right: 5px;
+        }
+        .edit-form button:hover {
+            background-color: #0056b3;
+        }
+        .editing {
+            border: 2px solid #007bff !important; /* Visual indicator for editing */
+        }
+        .sub-bar-group {
+            margin-bottom: 20px;
+            border: 1px solid #adb5bd; /* Gray border for the sub-bar group */
+            border-radius: 8px;
+            padding: 10px;
+            background-color: #e0f2f7;  /* Dark green background for the sub-bar group */
+        }
+        .sub-bar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #2e7d32; /* Dark green text */
+            
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            border-bottom: 1px solid #ced4da;
+            padding-bottom: 5px;
+            cursor: pointer; /* Indicate it's clickable */
+        }
+        .sub-bar-header h3 {
+            margin: 0;
+        }
+        .sub-bar-content {
+            overflow: hidden;
+            max-height: none;
+            transition: max-height 0.3s ease;
+        }
+        .sub-bar-content.collapsed {
+            max-height: 0;
+        }
+        .document-group {
+            /* Remove border and background from the inner group */
+            margin-bottom: 15px;
+            padding: 0;
+            background-color: transparent;
+            border: none;
+        }
+        .document-group h4 { /* Changed from h3 to h4 for hierarchy */
+            color: #28a745;
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1em;
+            border-bottom: 1px solid #dee2e6;
+            padding-bottom: 5px;
+        }
+    </style>
 </head>
-	<div>
-		<button><a href="C:\Users\HP\Documents\Nurselabs\Sub Tabs\Documents\Files\Part-1-Intro-to-Nursing-Informatics.pdf">Document 1</a></button>
-	</div>
-	<div>
-		<button><a href="C:\Users\HP\Documents\Nurselabs\Sub Tabs\Documents\Files\Part-2-Computer-Software.pdf">Document 2</a></button>
-	</div>
-	<div>
-		<button><a href="C:\Users\HP\Documents\Nurselabs\Sub Tabs\Documents\Files\Part-2-Computer-System.pdf">Document 3</a></button>
-	</div>
-
 <body>
+    <div class="background"></div>
+    <div class="container">
+        <header class="top-bar">
+            <button class="menu-button">
+                <i class="fas fa-bars"></i>
+            </button>
+            <h1>Documents</h1>
+            <button class="scroll-button">
+                <i class="fas fa-chevron-up"></i>
+            </button>
+        </header>
 
+        <main class="document-list" id="documentList">
+            <div class="sub-bar-group">
+                <div class="sub-bar-header" id="postpartumHeader">
+                    <h3>Postpartum Documents</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="sub-bar-content" id="postpartumContent">
+                    <div class="document-card" data-doc-id="1">
+                        <div class="edit-remove-buttons">
+                            <button class="edit-button">Edit</button>
+                            <button class="remove-button">Remove</button>
+                        </div>
+                        <div onclick="window.open('https://docs.google.com/document/d/1zV2Af10BTNB1JW6gtWkMm2v3cZvzmnIa/edit', '_blank');">
+                            <div class="card-header">
+                                <h2>Nursing Care Plan</h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="document-preview">
+                                    <img src="https://drive.google.com/thumbnail?id=1zV2Af10BTNB1JW6gtWkMm2v3cZvzmnIa&sz=w800"
+                                         alt="Nursing Care Plan Preview"
+                                         style="max-width: 100%; height: auto;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-container">
+                            <p class="short-text">A Nursing Care Plan is a thorough document that outlines the tailored care that...</p>
+                            <p class="full-text">A Nursing Care Plan is a thorough document that outlines the tailored care that a patient need, with an emphasis on their specific needs and goals.  It involves assessments, nurse diagnoses, planned interventions, and evaluation criteria to ensure that patients receive effective and comprehensive care.  This plan is dynamic, and it should be evaluated and changed on a frequent basis to reflect the patient's changing health and development.</p>
+                            <button class="read-more-button">Read More</button>
+                        </div>
+                        <div class="edit-form">
+                            <label for="editTitle1">Title:</label>
+                            <input type="text" id="editTitle1" value="Nursing Care Plan">
+                            <label for="editShortDesc1">Short Description:</label>
+                            <textarea id="editShortDesc1">A Nursing Care Plan is a thorough document that outlines the tailored care that...</textarea>
+                            <label for="editFullDesc1">Full Description:</label>
+                            <textarea id="editFullDesc1">A Nursing Care Plan is a thorough document that outlines the tailored care that a patient need, with an emphasis on their specific needs and goals.  It involves assessments, nurse diagnoses, planned interventions, and evaluation criteria to ensure that patients receive effective and comprehensive care.  This plan is dynamic, and it should be evaluated and changed on a frequent basis to reflect the patient's changing health and development.</textarea>
+                            <button class="save-edit-button" data-doc-id="1">Save</button>
+                            <button class="cancel-edit-button" data-doc-id="1">Cancel</button>
+                        </div>
+                    </div>
+
+                    <div class="document-card" data-doc-id="2">
+                        <div class="edit-remove-buttons">
+                            <button class="edit-button">Edit</button>
+                            <button class="remove-button">Remove</button>
+                        </div>
+                        <div onclick="window.open('https://docs.google.com/document/d/1sshbZMQxVb6U8ihtAb2ThuP1gea3szrB/edit', '_blank');">
+                            <div class="card-header">
+                                <h2>Drug Study</h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="document-preview">
+                                    <img src="https://drive.google.com/thumbnail?id=1sshbZMQxVb6U8ihtAb2ThuP1gea3szrB&sz=w800"
+                                         alt="Drug Study Preview"
+                                         style="max-width: 100%; height: auto;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-container">
+                            <p class="short-text">A drug study is a thorough examination of a particular ...</p>
+                            <p class="full-text">A drug study is a thorough examination of a particular medication, including its mechanism of action, indications, contraindications, side effects, dosage, administration, and nursing implications. Nurses must undertake detailed pharmacological investigations to verify that medications are administered safely and effectively.</p>
+                            <button class="read-more-button">Read More</button>
+                        </div>
+                        <div class="edit-form">
+                            <label for="editTitle2">Title:</label>
+                            <input type="text" id="editTitle2" value="Drug Study">
+                            <label for="editShortDesc2">Short Description:</label>
+                            <textarea id="editShortDesc2">A drug study is a thorough examination of a particular ...</textarea>
+                            <label for="editFullDesc2">Full Description:</label>
+                            <textarea id="editFullDesc2">A drug study is a thorough examination of a particular medication, including its mechanism of action, indications, contraindications, side effects, dosage, administration, and nursing implications. Nurses must undertake detailed pharmacological investigations to verify that medications are administered safely and effectively.</textarea>
+                            <button class="save-edit-button" data-doc-id="2">Save</button>
+                            <button class="cancel-edit-button" data-doc-id="2">Cancel</button>
+                        </div>
+                    </div>
+
+                    <div class="document-card" data-doc-id="3">
+                        <div class="edit-remove-buttons">
+                            <button class="edit-button">Edit</button>
+                            <button class="remove-button">Remove</button>
+                        </div>
+                        <div onclick="window.open('https://docs.google.com/document/d/1agJP6D9DLV2Lx2YLUPwqWTSTYEni9GZl/edit', '_blank');">
+                            <div class="card-header">
+                                <h2>Nursing Process (Postpartum)</h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="document-preview">
+                                    <img src="https://drive.google.com/thumbnail?id=1agJP6D9DLV2Lx2YLUPwqWTSTYEni9GZl&sz=w800"
+                                         alt="Drug Study Preview"
+                                         style="max-width: 100%; height: auto;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-container">
+                            <p class="short-text">The Nursing Process (Postpartum) includes a focused assessment...</p>
+                            <p class="full-text">The Nursing Process (Postpartum) includes a focused assessment of the mother's physical and emotional recovery, tailored diagnoses addressing specific postpartum needs, realistic outcome planning, holistic care and education implementation, and continuous evaluation to ensure optimal transition and well-being for both mother and baby.</p>
+                            <button class="read-more-button">Read More</button>
+                        </div>
+                        <div class="edit-form">
+                            <label for="editTitle3">Title:</label>
+                            <input type="text" id="editTitle3" value="Nursing Process (Postpartum)">
+                            <label for="editShortDesc3">Short Description:</label>
+                            <textarea id="editShortDesc3">The Nursing Process (Postpartum) includes a focused assessment...</textarea>
+                            <label for="editFullDesc3">Full Description:</label>
+                            <textarea id="editFullDesc3">The Nursing Process (Postpartum) includes a focused assessment of the mother's physical and emotional recovery, tailored diagnoses addressing specific postpartum needs, realistic outcome planning, holistic care and education implementation, and continuous evaluation to ensure optimal transition and well-being for both mother and baby.</textarea>
+                            <button class="save-edit-button" data-doc-id="3">Save</button>
+                            <button class="cancel-edit-button" data-doc-id="3">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sub-bar-group">
+                <div class="sub-bar-header" id="pediaHeader">
+                    <h3>Pedia Documents</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="sub-bar-content" id="pediaContent">
+                    <div class="document-card" data-doc-id="4">
+                        <div class="edit-remove-buttons">
+                            <button class="edit-button">Edit</button>
+                            <button class="remove-button">Remove</button>
+                        </div>
+                        <div onclick="window.open('YOUR_Pedia_NURSING_CARE_PLAN_LINK', '_blank');">
+                            <div class="card-header">
+                                <h2>Pedia Nursing Care Plan</h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="document-preview">
+                                    <p class="no-preview">No preview available</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-container">
+                            <p class="short-text">Pedia Nursing Care Plan focuses on the unique needs of child patients...</p>
+                            <p class="full-text">Pedia Nursing Care Plan focuses on the unique physiological, psychological, and developmental needs of child patients. It requires a specialized approach to assessment, diagnosis, intervention, and evaluation, considering the child's age, growth stage, and family involvement to provide comprehensive and child-centered care.</p>
+                            <button class="read-more-button">Read More</button>
+                        </div>
+                        <div class="edit-form">
+                            <label for="editTitle4">Title:</label>
+                            <input type="text" id="editTitle4" value="Pedia Nursing Care Plan">
+                            <label for="editShortDesc4">Short Description:</label>
+                            <textarea id="editShortDesc4">Pedia Nursing Care Plan focuses on the unique needs of child patients...</textarea>
+                            <label for="editFullDesc4">Full Description:</label>
+                            <textarea id="editFullDesc4">Pedia Nursing Care Plan focuses on the unique physiological, psychological, and developmental needs of child patients. It requires a specialized approach to assessment, diagnosis, intervention, and evaluation, considering the child's age, growth stage, and family involvement to provide comprehensive and child-centered care.</textarea>
+                            <button class="save-edit-button" data-doc-id="4">Save</button>
+                            <button class="cancel-edit-button" data-doc-id="4">Cancel</button>
+                        </div>
+                    </div>
+
+                    <div class="document-card" data-doc-id="5">
+                        <div class="edit-remove-buttons">
+                            <button class="edit-button">Edit</button>
+                            <button class="remove-button">Remove</button>
+                        </div>
+                        <div onclick="window.open('YOUR_Pedia_DRUG_STUDY_LINK', '_blank');">
+                            <div class="card-header">
+                                <h2>Pedia Drug Study</h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="document-preview">
+                                    <p class="no-preview">No preview available</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-container">
+                            <p class="short-text">A Pedia Drug Study examines medications used in pediatric care...</p>
+                            <p class="full-text">A Pedia Drug Study examines medications used in pediatric care, paying close attention to age-appropriate dosages, potential side effects in children, and specific administration techniques. It's crucial for nurses to understand the pharmacokinetic and pharmacodynamic differences in pediatric patients to ensure safe and effective medication management.</p>
+                            <button class="read-more-button">Read More</button>
+                        </div>
+                        <div class="edit-form">
+                            <label for="editTitle5">Title:</label>
+                            <input type="text" id="editTitle5" value="Pedia Drug Study">
+                            <label for="editShortDesc5">Short Description:</label>
+                            <textarea id="editShortDesc5">A Pedia Drug Study examines medications used in pediatric care...</textarea>
+                            <label for="editFullDesc5">Full Description:</label>
+                            <textarea id="editFullDesc5">A Pedia Drug Study examines medications used in pediatric care, paying close attention to age-appropriate dosages, potential side effects in children, and specific administration techniques. It's crucial for nurses to understand the pharmacokinetic and pharmacodynamic differences in pediatric patients to ensure safe and effective medication management.</textarea>
+                            <button class="save-edit-button" data-doc-id="5">Save</button>
+                            <button class="cancel-edit-button" data-doc-id="5">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="addDocumentSection">
+                <h2>Add New Document</h2>
+                <label for="newDocumentTitle">Title:</label>
+                <input type="text" id="newDocumentTitle" placeholder="Enter document title">
+
+                <label for="newDocumentLink">Link (URL):</label>
+                <input type="text" id="newDocumentLink" placeholder="Enter document URL">
+
+                <label for="newDocumentShortDescription">Short Description:</label>
+                <textarea id="newDocumentShortDescription" rows="2" placeholder="Enter short description"></textarea>
+
+                <label for="newDocumentFullDescription">Full Description:</label>
+                <textarea id="newDocumentFullDescription" rows="4" placeholder="Enter full description"></textarea>
+
+                <button onclick="addNewDocument()">Add Document</button>
+            </div>
+        </main>
+    </div>
+
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const readMoreButtons = document.querySelectorAll('.read-more-button');
+    const scrollButton = document.querySelector('.scroll-button');
+    const documentList = document.getElementById('documentList');
+    const addDocumentSection = document.getElementById('addDocumentSection');
+
+    const postpartumHeader = document.getElementById('postpartumHeader');
+    const postpartumContent = document.getElementById('postpartumContent');
+    const postpartumIcon = postpartumHeader.querySelector('i');
+
+    const pediaHeader = document.getElementById('pediaHeader');
+    const pediaContent = document.getElementById('pediaContent');
+    const pediaIcon = pediaHeader.querySelector('i');
+
+    // Initially collapse the content sections
+    postpartumContent.classList.add('collapsed');
+    postpartumIcon.classList.remove('fa-chevron-down');
+    postpartumIcon.classList.add('fa-chevron-right');
+
+    pediaContent.classList.add('collapsed');
+    pediaIcon.classList.remove('fa-chevron-down');
+    pediaIcon.classList.add('fa-chevron-right');
+
+    postpartumHeader.addEventListener('click', function() {
+        postpartumContent.classList.toggle('collapsed');
+        if (postpartumContent.classList.contains('collapsed')) {
+            postpartumIcon.classList.remove('fa-chevron-down');
+            postpartumIcon.classList.add('fa-chevron-right');
+        } else {
+            postpartumIcon.classList.remove('fa-chevron-right');
+            postpartumIcon.classList.add('fa-chevron-down');
+        }
+    });
+
+    pediaHeader.addEventListener('click', function() {
+        pediaContent.classList.toggle('collapsed');
+        if (pediaContent.classList.contains('collapsed')) {
+            pediaIcon.classList.remove('fa-chevron-down');
+            pediaIcon.classList.add('fa-chevron-right');
+        } else {
+            pediaIcon.classList.remove('fa-chevron-right');
+            pediaIcon.classList.add('fa-chevron-down');
+        }
+    });
+
+    if (scrollButton && documentList) {
+        scrollButton.addEventListener('click', function() {
+            documentList.classList.toggle('collapsed');
+            const icon = this.querySelector('i');
+            if (icon.classList.contains('fa-chevron-up')) {
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-chevron-down');
+            } else {
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-up');
+            }
+        });
+    }
+
+    readMoreButtons.forEach(button => {
+        const textContainer = button.parentNode;
+        const shortText = textContainer.querySelector('.short-text');
+        const fullText = textContainer.querySelector('.full-text');
+
+        if (fullText && shortText) {
+            button.addEventListener('click', function() {
+                textContainer.classList.toggle('expanded');
+                button.textContent = textContainer.classList.contains('expanded') ? 'Read Less' : 'Read More';
+
+                if (textContainer.classList.contains('expanded')) {
+                    shortText.style.display = 'none';
+                    fullText.style.display = 'block';
+                } else {
+                    shortText.style.display = '-webkit-box';
+                    fullText.style.display = 'none';
+                }
+            });
+            fullText.style.display = 'none';
+        }
+    });
+
+    documentList.addEventListener('click', function(event) {
+        const target = event.target;
+        const documentCard = target.closest('.document-card');
+
+        if (documentCard) {
+            const docId = documentCard.dataset.docId;
+            const editForm = documentCard.querySelector('.edit-form');
+            const textContainer = documentCard.querySelector('.text-container');
+            const cardHeader = documentCard.querySelector('.card-header h2');
+            const shortTextElement = textContainer.querySelector('.short-text');
+            const fullTextElement = textContainer.querySelector('.full-text');
+            const editButton = documentCard.querySelector('.edit-button');
+            const removeButton = documentCard.querySelector('.remove-button');
+            const saveEditButton = editForm ? editForm.querySelector('.save-edit-button') : null;
+            const cancelEditButton = editForm ? editForm.querySelector('.cancel-edit-button') : null;
+            const editTitleInput = editForm ? editForm.querySelector(`#editTitle${docId}`) : null;
+            const editShortDescInput = editForm ? editForm.querySelector(`#editShortDesc${docId}`) : null;
+            const editFullDescInput = editForm ? editForm.querySelector(`#editFullDesc${docId}`) : null;
+
+            if (target.classList.contains('remove-button')) {
+                documentCard.remove();
+                // You might want to update counts or UI if needed
+            } else if (target.classList.contains('edit-button')) {
+                documentCard.classList.add('editing');
+                textContainer.style.display = 'none';
+                if (editForm) {
+                    editForm.style.display = 'block';
+                }
+                if (editButton) editButton.style.display = 'none';
+                if (removeButton) removeButton.style.display = 'none';
+            } else if (target.classList.contains('cancel-edit-button')) {
+                documentCard.classList.remove('editing');
+                textContainer.style.display = 'block';
+                if (editForm) {
+                    editForm.style.display = 'none';
+                }
+                if (editButton) editButton.style.display = 'inline-block';
+                if (removeButton) removeButton.style.display = 'inline-block';
+            } else if (target.classList.contains('save-edit-button')) {
+                if (editTitleInput && editShortDescInput && editFullDescInput && cardHeader && shortTextElement && fullTextElement) {
+                    cardHeader.textContent = editTitleInput.value;
+                    shortTextElement.textContent = editShortDescInput.value;
+                    fullTextElement.textContent = editFullDescInput.value;
+
+                    documentCard.classList.remove('editing');
+                    textContainer.style.display = 'block';
+                    if (editForm) {
+                        editForm.style.display = 'none';
+                    }
+                    if (editButton) editButton.style.display = 'inline-block';
+                    if (removeButton) removeButton.style.display = 'inline-block';
+                }
+            }
+        }
+    });
+});
+
+function addNewDocument() {
+    const documentList = document.getElementById('documentList');
+    const newTitle = document.getElementById('newDocumentTitle').value;
+    const newLink = document.getElementById('newDocumentLink').value;
+    const newShortDescription = document.getElementById('newDocumentShortDescription').value;
+    const newFullDescription = document.getElementById('newDocumentFullDescription').value;
+    const newDocId = Date.now(); // Simple way to generate a unique ID
+
+    // Determine which section to add to (you might need a way to specify this in the UI)
+    // For now, let's default to the Postpartum section
+    const targetContent = document.getElementById('postpartumContent');
+
+    if (newTitle && newLink && newShortDescription && newFullDescription) {
+        const newCard = document.createElement('div');
+        newCard.classList.add('document-card');
+        newCard.dataset.docId = newDocId;
+        newCard.innerHTML = `
+            <div class="edit-remove-buttons">
+                <button class="edit-button">Edit</button>
+                <button class="remove-button">Remove</button>
+            </div>
+            <div onclick="window.open('${newLink}', '_blank');">
+                <div class="card-header">
+                    <h2>${newTitle}</h2>
+                </div>
+                <div class="card-body">
+                    <div class="document-preview">
+                        <p class="no-preview">No preview available</p>
+                    </div>
+                </div>
+            </div>
+            <div class="text-container">
+                <p class="short-text">${newShortDescription}</p>
+                <p class="full-text">${newFullDescription}</p>
+                <button class="read-more-button">Read More</button>
+            </div>
+            <div class="edit-form">
+                <label for="editTitle${newDocId}">Title:</label>
+                <input type="text" id="editTitle${newDocId}" value="${newTitle}">
+                <label for="editShortDesc${newDocId}">Short Description:</label>
+                <textarea id="editShortDesc${newDocId}">${newShortDescription}</textarea>
+                <label for="editFullDesc${newDocId}">Full Description:</label>
+                <textarea id="editFullDesc${newDocId}">${newFullDescription}</textarea>
+                <button class="save-edit-button" data-doc-id="${newDocId}">Save</button>
+                <button class="cancel-edit-button" data-doc-id="${newDocId}">Cancel</button>
+            </div>
+        `;
+        targetContent.insertBefore(newCard, addDocumentSection); // Insert before the add section within the target
+
+        // Clear the form
+        document.getElementById('newDocumentTitle').value = '';
+        document.getElementById('newDocumentLink').value = '';
+        document.getElementById('newDocumentShortDescription').value = '';
+        document.getElementById('newDocumentFullDescription').value = '';
+
+        // Re-attach event listener to the new "Read More" button
+        const newReadMoreButton = newCard.querySelector('.read-more-button');
+        const newTextContainer = newReadMoreButton.parentNode;
+        const newShortText = newTextContainer.querySelector('.short-text');
+        const newFullText = newTextContainer.querySelector('.full-text');
+
+        if (newFullText && newShortText) {
+            newReadMoreButton.addEventListener('click', function() {
+                newTextContainer.classList.toggle('expanded');
+                newReadMoreButton.textContent = newTextContainer.classList.contains('expanded') ? 'Read Less' : 'Read More';
+
+                if (newTextContainer.classList.contains('expanded')) {
+                    newShortText.style.display = 'none';
+                    newFullText.style.display = 'block';
+                } else {
+                    newShortText.style.display = '-webkit-box';
+                    newFullText.style.display = 'none';
+                }
+            });
+            newFullText.style.display = 'none';
+        }
+    } else {
+        alert('Please fill in all the fields to add a new document.');
+    }
+}
+    </script>
 </body>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js" integrity="sha384-VQqxDN0EQCkWoxt/0vsQvZswzTHUVOImccYmSyhJTp7kGtPed0Qcx8rK9h9YEgx+" crossorigin="anonymous"></script>
 </html>
