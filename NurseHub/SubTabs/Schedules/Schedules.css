@@ -1,0 +1,321 @@
+/* Schedules.css */
+
+@font-face {
+    font-family: 'Glacial Indifference';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Glacial Indifference'), url('https://fonts.cdnfonts.com/s/31913/GlacialIndifference-Regular.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Glacial Indifference';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Glacial Indifference'), url('https://fonts.cdnfonts.com/s/31913/GlacialIndifference-Bold.woff') format('woff');
+}
+
+body {
+    font-family: 'Glacial Indifference', sans-serif;
+    margin: 0;
+    /* Existing background - you can change this if you prefer my gradient */
+    background-image: linear-gradient(to bottom, white, #b81e63);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding-top: 20px;
+}
+
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../../Images/images01.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.2;
+    z-index: -1;
+}
+
+.header-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1;
+    width: 90%;
+    max-width: 700px;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 10px;
+}
+
+.logo {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+
+.title-group {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.navicare-logo {
+    max-height: 90px;
+    width: auto;
+}
+
+.Learning-Materials-Icon,
+.Document-Icon,
+.Schedule-Icon,
+.Hamburger-Icon {
+    height: 24px;
+    width: 24px;
+    vertical-align: middle;
+}
+
+.calendar-container {
+    /* Modified background, border, and shadow */
+    background-image: linear-gradient(to bottom, white, #ffadcf);
+    padding: 20px;
+    border-radius: 25px;
+    border: 2px solid #2e7d32;
+    width: 90%;
+    max-width: 600px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.calendar-header-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.calendar-title {
+    /* Modified title style */
+    background-color: #fef9e5; /* Pink background */
+    color: #b81e63;
+    padding: 10px 20px;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.calendar-title img {
+    height: 24px;
+}
+
+.month-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.month-navigation button {
+    background-color: transparent; /* Make button background transparent */
+    color: #424242; /* Text color (may not be visible if only using images) */
+    border: none; /* Remove button border */
+    border-radius: 50%; /* Make circular */
+    width: 100px; /* Adjusted width */
+    height: 100px; /* Adjusted height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1.2em; /* For potential fallback text */
+    padding: 0; /* Remove padding */
+    transition: background-color 0.2s ease;
+}
+
+.month-navigation button:hover {
+    background-color: #e0f7fa; /* Lighter background on hover */
+}
+
+.month-navigation button img {
+    max-width: 80%; /* Ensure image fits within the button */
+    max-height: 80%;
+    vertical-align: middle; /* Vertically align the image */
+}
+
+.month-navigation h2 {
+    color: #f48fb1; /* Modified color */
+    margin: 0;
+    font-size: 1.8em;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+    text-align: center;
+}
+
+.calendar-grid div {
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 1em;
+    color: #424242; /* Modified color */
+}
+
+.calendar-grid div.today {
+    background-color: #e1bee7; /* Modified color */
+    font-weight: bold;
+    color: #6a1b9a; /* Modified color */
+}
+
+.calendar-grid div.has-event {
+    background-color: #a5d6a7; /* Modified color */
+    color: #1b5e20; /* Modified color */
+}
+
+.schedule-input {
+    background-color: #ffe0ed; /* Added background color */
+    padding: 15px;
+    border-radius: 10px; /* Added border-radius */
+    margin-top: 20px;
+}
+
+.schedule-input h3 {
+    color: #f48fb1;
+    margin-top: 0;
+    border-bottom: 1px solid #f48fb1;
+    padding-bottom: 10px;
+}
+
+.schedule-input label {
+    display: block;
+    margin-bottom: 5px;
+    color: #757575;
+}
+
+.schedule-input input[type="date"],
+.schedule-input input[type="time"],
+.schedule-input textarea {
+    width: calc(100% - 16px);
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.schedule-input textarea {
+    min-height: 60px;
+}
+
+.schedule-input button {
+    background-color: #81c784;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+}
+
+.schedule-display {
+    margin-top: 20px;
+}
+
+.schedule-display h3 {
+    color: #f48fb1;
+    margin-top: 0;
+    border-bottom: 1px solid #f48fb1;
+    padding-bottom: 10px;
+}
+
+.schedule-display ul {
+    list-style: none;
+    padding: 0;
+}
+
+.schedule-display li {
+    padding: 8px 0;
+    border-bottom: 1px dotted #eee;
+    font-family: 'Poppins', sans-serif;
+}
+
+.schedule-display li:last-child {
+    border-bottom: none;
+}
+
+.event-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.event-details {
+    flex-grow: 1;
+}
+
+.event-actions button {
+    background: none;
+    border: none;
+    color: #e57373;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+/* Styling for the "ADD NOTE" section */
+.add-note-container {
+    background-color: #ffe0ed; /* Light pink */
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.add-note-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #f48fb1; /* Pink text */
+    font-weight: bold;
+}
+
+.add-note-header span { /* Plus icon */
+    font-size: 1.5em;
+    color: #81c784; /* Green plus */
+}
+
+.add-note-input input[type="text"] {
+    width: calc(100% - 16px);
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    color: #1e1e1e;
+}
+
+.add-note-input textarea {
+    width: calc(100% - 16px);
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    color: #1e1e1e;
+    resize: vertical; /* Allow vertical resizing by the user */
+    overflow-y: hidden; /* Hide vertical scrollbar until needed */
+    min-height: 40px; /* Initial height */
+}

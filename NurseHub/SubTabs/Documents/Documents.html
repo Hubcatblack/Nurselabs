@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documents - NurseHub WVSU</title>
+    <link rel="stylesheet" href="Documents.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .document-card {
+            cursor: pointer;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-radius: 25px;
+            width: fit-content;
+            text-align: center;
+        }
+
+        .header .Hamburger-Icon {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 25px;
+            border: 1px solid #2d9900;
+        }
+
+        .header .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: #b81e63;
+            width: fit-content;
+            
+        }
+
+        .header .logo-container img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .header .Learning-Materials-Title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .header .hidden-nav {
+            display: none;
+            flex-direction: column;
+            margin-top: 10px;
+        }
+
+        .header .hidden-nav.show {
+            display: flex;
+            
+        }
+
+        .header .hidden-nav a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 15px;
+            border-radius: 25px;
+            color: #b81e63;
+            text-decoration: none;
+            border: 1px solid #2d9900;
+            margin: 2px 0;
+            width: 200px;
+            box-sizing: border-box;
+                        background-color: blanchedalmond;
+        }
+
+        .header .hidden-nav a:hover {
+            background-color: #f7eecc;
+        }
+
+        .container {
+            margin-top: 150px;
+            padding: 20px;
+            width: 100%;
+            box-sizing: border-box;
+            min-height: calc(100vh - 150px);
+        }
+
+        @media (max-width: 768px) {
+            .document-sidebar-container {
+                position: static;
+                width: 100%;
+                height: auto;
+                overflow-y: visible;
+            }
+
+            .container {
+                margin-left: 0;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    
+    <header class="header">
+        <div class="logo-container">
+            <img src="../../Images/Hamburger Icon.png" alt="Hamburger Icon" class="Hamburger-Icon">
+            <img src="../../Images/Document Icon.png" alt="Document Icon" class="Document-Icon">
+            <div class="Learning-Materials-Title">Documents</div>
+        </div>
+        <div class="hidden-nav">
+            <a href="../Schedules/Schedules.html" class="nav-item">
+                <img src="../../Images/Schedule Icon.png" alt="Schedule" class="Schedule-Icon">
+                Schedule
+            </a>
+            <a href="../Learning Materials/Learning Materials.html" class="nav-item">
+                <img src="../../Images/Learning Modules.png" alt="Documents" class="Document-Icon">
+                Learning Materials
+            </a>
+        </div>
+    </header>
+    
+    <div class="document-sidebar-container">
+        <div class="first-sem-container">
+            <div class="first-sem">1ST SEMESTER</div>
+            <div class="document-sidebar first-sem-docs">
+                <div class="first-sem-docx" data-target="ncp">NCP</div>
+                <div class="first-sem-docx" data-target="drug-study">Drug Study</div>
+                <div class="first-sem-docx" data-target="journal-title-page">Journal Title Page</div>
+                <div class="first-sem-docx" data-target="journal-summary">Journal Summary and Reflection</div>
+                <div class="first-sem-docx" data-target="ncm-213b-prs">NCM 213B PRS</div>
+                <div class="first-sem-docx" data-target="scrub-forms">Scrub Forms</div>
+                <div class="first-sem-docx" data-target="ob-gyne-assessment">OB-GYNE Assessment Guide</div>
+                <div class="first-sem-docx" data-target="prepartum-assessment">Prepartum Assessment Guide</div>
+                <div class="first-sem-docx" data-target="labor-delivery-assessment">Labor and Delivery Assessment Guide</div>
+                <div class="first-sem-docx" data-target="normal-pedia-assessment">Normal Pedia Assessment Guide</div>
+            </div>
+        </div>
+        <div class="second-sem-container">
+            <div class="second-sem">2ND SEMESTER</div>
+            <div class="document-sidebar second-sem-docs">
+                <div class="second-sem-docx" data-target="ncp">NCP</div>
+                <div class="second-sem-docx" data-target="drug-study">Drug Study</div>
+                <div class="second-sem-docx" data-target="journal-title-page">Journal Title Page</div>
+                <div class="second-sem-docx" data-target="journal-summary">Journal Summary and Reflection</div>
+                <div class="second-sem-docx" data-target="ncm-213b-prs">NCM 213B PRS</div>
+                <div class="second-sem-docx" data-target="scrub-forms">Scrub Forms</div>
+                <div class="second-sem-docx" data-target="ob-gyne-assessment">OB-GYNE Assessment Guide</div>
+                <div class="second-sem-docx" data-target="prepartum-assessment">Prepartum Assessment Guide</div>
+                <div class="second-sem-docx" data-target="labor-delivery-assessment">Labor and Delivery Assessment Guide</div>
+                <div class="second-sem-docx" data-target="normal-pedia-assessment">Normal Pedia Assessment Guide</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <main class="document-list">
+            <section id="ncp">
+                <div class="document-card">
+                    <div onclick="window.open('https://docs.google.com/document/d/1IvK77nSqVRjJzdBviBmw209_zge0TwdrBCbZCMf5r2I/edit?usp=sharing', '_blank');">
+                        <div class="card-header">
+                            <h2>Nursing Care Plan</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="document-preview">
+                                 <img src="https://drive.google.com/thumbnail?id=1IvK77nSqVRjJzdBviBmw209_zge0TwdrBCbZCMf5r2I&sz=w800"
+                                alt="Nursing Care Plan Preview"
+                                style="max-width: 100%; height: auto;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-container">
+                        <p class="short-text">A structured document outlining patient problems, goals, nursing...</p>
+                        <p class="full-text">A structured document outlining patient problems, goals, nursing interventions, and evaluation methods to ensure holistic and evidence-based nursing care.</p>
+                        <button class="read-more-button">Read More</button>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="drug-study">
+                <div class="document-card">
+                    <div onclick="window.open('https://docs.google.com/document/d/1Crl0IgG1SfCHIjtVmOoJE081mAicwB7rgVGWKbbLrZc/edit?usp=sharing', '_blank');">
+                        <div class="card-header">
+                            <h2>Drug Study</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="document-preview">
+                                <img src="https://drive.google.com/thumbnail?id=1Crl0IgG1SfCHIjtVmOoJE081mAicwB7rgVGWKbbLrZc&sz=w800"
+                                alt="Drug Study Preview"
+                                style="max-width: 100%; height: auto;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-container">
+                        <p class="short-text">A comprehensive analysis of selected medications, detailing...</p>
+                        <p class="full-text">A comprehensive analysis of selected medications, detailing their indications, dosage, side effects, contraindications, and nursing responsibilities.</p>
+                        <button class="read-more-button">Read More</button>
+                    </div>
+                </div>
+            </section>
+            
+             <section id="scrub-forms">
+                <div class="document-card">
+                    <div onclick="window.open('');">
+                        <div class="card-header">
+                            <h2>Scrub Forms</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="document-preview">
+                                <img src=""
+                                alt="Drug Study Preview" style="max-width: 100%; height: auto;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-container">
+                        <p class="short-text">Documentation tools used to record student nurse participation in delivery room procedures performed under...</p>
+                        <p class="full-text">Documentation tools used to record student nurse participation in delivery room procedures performed under sterile technique. These include: Immediate Newborn Cord Care – Records the proper sterile care of the newborn’s umbilical cord immediately after birth to ensure infection prevention and clinical accountability. Handled Delivery – Validates a student’s direct involvement in or observation of childbirth, serving as formal documentation of clinical experience under supervision.</p>
+                        <button class="read-more-button">Read More</button>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="journal-title-page">
+                <div class="document-card">
+                    <div onclick="window.open('https://docs.google.com/document/d/1EtLaOU3aJm4NfUbo6elnn6G-llmJH_ow6E2lpfM64mo/edit?usp=sharing', '_blank');">
+                        <div class="card-header">
+                            <h2>Journal Reading Title Page</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="document-preview">
+                                 <img src="https://drive.google.com/thumbnail?id=1EtLaOU3aJm4NfUbo6elnn6G-llmJH_ow6E2lpfM64mo&sz=w800"
+                                alt="Journal Reading Title Page" style="max-width: 100%; height: auto;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-container">
+                        <p class="short-text">A standard title format for journal reading submissions, ensuring...</p>
+                        <p class="full-text">A standard title format for journal reading submissions, ensuring uniformity in identifying the topic, student details, and relevant course information.</p>
+                        <button class="read-more-button">Read More</button>
+                    </div>
+                </div>
+            </section>
+            
+            
+            <section id="journal-summary">
+                <div class="document-card">
+                    <div onclick="window.open('https://docs.google.com/document/d/13BGa4_EL2bD0x-Zrit7mv3uvBxX4QllPaFgSDrz4Fhk/edit?tab=t.0', '_blank');">
+                        <div class="card-header">
+                            <h2>Journal Reading (Summary and Reflection)</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="document-preview">
+                                 <img src="https://drive.google.com/thumbnail?id=13BGa4_EL2bD0x-Zrit7mv3uvBxX4QllPaFgSDrz4Fhk&sz=w800"
+                                alt="Journal Reading (Summary and Reflection)" style="max-width: 100%; height: auto;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-container">
+                        <p class="short-text">A template used for summarizing assigned journal articles and...</p>
+                        <p class="full-text">A template used for summarizing assigned journal articles and providing critical personal reflection. It promotes the development of analytical thinking, integration of theory to practice, and evidence-based interpretation of current nursing literature.</p>
+                        <button class="read-more-button">Read More</button>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="ncm-213b-prs">
+                <div class="document-card">
+                    <div onclick="window.open('https://docs.google.com/document/d/17EI5JpQkzRf6M3cq5y5bNVF6gplRwdt0/edit?tab=t.0', '_blank');">
+                        <div class="card-header">
+                            <h2>PRS</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="document-preview">
+                                 <img src="https://drive.google.com/thumbnail?id=17EI5JpQkzRf6M3cq5y5bNVF6gplRwdt0&sz=w800"
+                                alt="PRS first-sem" style="max-width: 100%; height: auto;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-container">
+                        <p class="short-text">>A clinical evaluation tool utilized during the first semester to...</p>
+                        <p class="full-text">A clinical evaluation tool utilized during the first semester to assess foundational nursing skills, professional behavior, and procedural competencies. It provides a structured format for monitoring students’ progress and ensuring safe, competent, and ethical practice during initial clinical exposures.</p>
+                        <button class="read-more-button">Read More</button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="normal-pedia-assessment">
+                <div class="document-card">
+                    <div onclick="window.open('', '_blank');">
+                        <div class="card-header">
+                            <h2>Normal Pedia Assessment Guide </h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="document-preview">
+                                <img src=""
+                                alt="Normal Pedia Assessment Guide first-sem" style="max-width: 100%; height: auto;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-container">
+                        <p class="short-text">A structured tool that outlines how to systematically evaluate the...</p>
+                        <p class="full-text">A structured tool that outlines how to systematically evaluate the health status of infants, children, and adolescents to help nursing students ensure safe, accurate, and compassionate care tailored to a child's developmental stage.</p>
+                        <button class="read-more-button">Read More</button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="ob-gyne-assessment">
+                <div class="document-card">
+                    <div onclick="window.open('', '_blank');">
+                        <div class="card-header">
+                            <h2>OB Assessment Guide</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="document-preview">
+                                <img src="" alt="OB Assessment Guide first-sem" style="max-width: 100%; height: auto;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-container">
+                        <p class="short-text">A reference tool used to systematically evaluate the...</p>
+                        <p class="full-text">A reference tool used to systematically evaluate the health status of pregnant women and their fetuses, covering history-taking, vital signs, fetal monitoring, and labor signs.</p>
+                        <button class="read-more-button">Read More</button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="prepartum-assessment">
+                <div class="document-card">
+                    <div onclick="window.open('https://docs.google.com/document/d/1nR2BhSSTSnyeO1YkOkLWLhX88bInyId2iq4mnzpn1LQ/edit?tab=t.0', '_blank');">
+                        <div class="card-header">
+                            <h2>Prepartum Assessment Guide</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="document-preview">
+                                 <img src="https://drive.google.com/thumbnail?id=1nR2BhSSTSnyeO1YkOkLWLhX88bInyId2iq4mnzpn1LQ&sz=w800" alt="Prepartum Assessment Guide first-sem" style="max-width: 100%; height: auto;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-container">
+                        <p class="short-text">A structured framework for evaluating the physical, emotional, and...</p>
+                        <p class="full-text">A structured framework for evaluating the physical, emotional, and fetal status of expectant mothers prior to labor to facilitate comprehensive data collection, risk identification, and early intervention planning to promote maternal and fetal well-being.</p>
+                        <button class="read-more-button">Read More</button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="labor-delivery-assessment">
+                <div class="document-card">
+                    <div onclick="window.open('', '_blank');">
+                        <div class="card-header">
+                            <h2>Labor and Delivery Assessment Guide</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="document-preview">
+                                <img src=""
+                                alt="Labor and Delivery Assessment Guide first-sem" style="max-width: 100%; height: auto;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-container">
+                        <p class="short-text">A guide for evaluating women throughout the stages of labor and...</p>
+                        <p class="full-text">A guide for evaluating women throughout the stages of labor and delivery, from initial labor signs to postpartum care, focusing on maternal and fetal well-being, labor progress, pain management, and immediate newborn care.</p>
+                        <button class="read-more-button">Read More</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburgerIcon = document.querySelector('.Hamburger-Icon');
+            const hiddenNav = document.querySelector('.header .hidden-nav');
+            const documentSidebar = document.querySelector('.document-sidebar-container');
+            const firstSemDocs = document.querySelector('.first-sem-docs');
+            const secondSemDocs = document.querySelector('.second-sem-docs');
+            const sections = document.querySelectorAll('section');
+            const firstSemHeader = document.querySelector('.first-sem');
+            const secondSemHeader = document.querySelector('.second-sem');
+            const container = document.querySelector('.container');
+            const header = document.querySelector('.header');
+
+
+            let isSidebarFixed = false;
+            let headerHeight = header.offsetHeight;
+
+
+            documentSidebar.style.top = headerHeight + 'px';
+            documentSidebar.style.height = `calc(100vh - ${headerHeight}px)`;
+            container.style.marginTop = headerHeight + 'px';
+
+
+            function updateActiveSection() {
+                let currentSectionId = '';
+                let firstSectionTop = sections[0].offsetTop;
+
+                if (window.scrollY < firstSectionTop - 100) {
+                    currentSectionId = '';
+                } else {
+                    sections.forEach(section => {
+                        const sectionTop = section.offsetTop;
+                        const sectionHeight = section.clientHeight;
+                        if (window.scrollY >= sectionTop - 100 && window.scrollY < sectionTop + sectionHeight - 100) {
+                            currentSectionId = section.getAttribute('id');
+                        }
+                    });
+                }
+
+
+                document.querySelectorAll('.document-sidebar div').forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('data-target') === currentSectionId) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', updateActiveSection);
+
+            firstSemHeader.addEventListener('click', () => {
+                firstSemDocs.classList.toggle('show');
+            });
+
+            secondSemHeader.addEventListener('click', () => {
+                secondSemDocs.classList.toggle('show');
+            });
+
+            documentSidebar.addEventListener('click', (event) => {
+                const target = event.target.getAttribute('data-target');
+                if (target) {
+                    const targetSection = document.getElementById(target);
+                    if (targetSection) {
+                        window.scrollTo({
+                            top: targetSection.offsetTop - headerHeight,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+
+            window.addEventListener('scroll', () => {
+                const scrollY = window.scrollY;
+
+                if (scrollY > headerHeight && !isSidebarFixed) {
+                    documentSidebar.style.position = 'fixed';
+                    documentSidebar.style.top = '0px';
+                    documentSidebar.style.marginTop = '0px';
+                    isSidebarFixed = true;
+                    container.style.marginLeft = '250px';
+                } else if (scrollY <= headerHeight && isSidebarFixed) {
+                    documentSidebar.style.position = 'absolute';
+                    documentSidebar.style.top = headerHeight + 'px';
+                    documentSidebar.style.marginTop = '0px';
+                    isSidebarFixed = false;
+                    container.style.marginLeft = '0px';
+                }
+            });
+
+            hamburgerIcon.addEventListener('click', () => {
+                hiddenNav.classList.toggle('show');
+            });
+        });
+    </script>
+</body>
+</html>

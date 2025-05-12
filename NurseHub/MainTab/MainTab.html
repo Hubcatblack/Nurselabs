@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navicare WVSU</title>
+    <link rel="stylesheet" href="MainTab.css">
+</head>
+<body class="flex-container">
+    <div class="background"></div>
+    <header class="header-container">
+        <div class="logo-container">
+            <img src="../Images/WVSU Logo.png" alt="WVSU Logo Iloilo City" class="logo logo-left">
+            <img src="../Images/CON Logo.png" alt="WVSU College of Nursing Logo" class="logo logo-right">
+        </div>
+        <div class="title-group">
+            <img src="../Images/Navicare with Logo.png" alt="Navicare Logo" class="navicare-logo">
+        </div>
+    </header>
+    
+    <main class="dashboard-container">
+        <div class="dashboard-card">
+            <a id="documentsButton" class="dashboard-button">
+                <img src="../Images/Document Icon.png" class="document-icon">
+                Documents
+            </a>
+            <div class="semester-buttons">
+                <a href="../SubTabs/Documents/Documents.html" id="firstSemesterButton" class="sidebar-button">1ST SEMESTER</a>
+                <a href="../SubTabs/Documents/Documents.html" id="secondSemesterButton" class="sidebar-button">2ND SEMESTER</a>
+            </div>
+            <a href="../SubTabs/Schedules/Schedules.html" class="dashboard-button">
+                <img src="../Images/Schedule Icon.png" class="schedules-icon"> Schedules
+            </a>
+            <a href="../SubTabs/Learning Materials/Learning Materials.html" class="dashboard-button">
+                <img src="../Images/Learning Modules.png" class="learning-materials-icon"> Learning Materials
+            </a>
+        </div>
+    </main>
+    
+    <script>
+        const documentsButton = document.getElementById('documentsButton');
+        const firstSemesterButton = document.getElementById('firstSemesterButton');
+        const secondSemesterButton = document.getElementById('secondSemesterButton');
+        const firstSemesterDocsRow = document.getElementById('firstSemesterDocs');
+        const secondSemesterDocsRow = document.getElementById('secondSemesterDocs');
+        const allDocumentRows = document.querySelectorAll('.document-row');
+        const semesterButtonsDiv = document.querySelector('.semester-buttons');
+        
+        // Initially hide all document rows AND semester buttons (redundant with CSS, but ensures state)
+        allDocumentRows.forEach(row => {
+            row.style.display = 'none';
+        });
+        semesterButtonsDiv.style.display = 'none';
+        
+        documentsButton.addEventListener('click', function() {
+            // Toggle visibility of semester buttons
+            semesterButtonsDiv.style.display = semesterButtonsDiv.style.display === 'none' ? 'flex' : 'none';
+            
+            // Hide all document rows when the button is toggled
+            allDocumentRows.forEach(row => {
+                row.style.display = 'none';
+            });
+        });
+        
+        firstSemesterButton.addEventListener('click', function() {
+            // Hide all other document rows
+            allDocumentRows.forEach(row => {
+                if (row.id !== 'firstSemesterDocs') {
+                    row.style.display = 'none';
+                }
+            });
+            firstSemesterDocsRow.style.display = 'block';
+        });
+        
+        secondSemesterButton.addEventListener('click', function() {
+            // Hide all other document rows
+            allDocumentRows.forEach(row => {
+                if (row.id !== 'secondSemesterDocs') {
+                    row.style.display = 'none';
+                }
+            });
+            secondSemesterDocsRow.style.display = 'block';
+        });
+    </script>
+</body>
+<link href="https://fonts.cdnfonts.com/css/glacial-indifference-2" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js" integrity="sha384-VQqxDN0EQCkWoxt/0vsQvZswzTHUVOImccYmSyhJTp7kGtPed0Qcx8rK9h9YEgx+" crossorigin="anonymous"></script>
+</html>

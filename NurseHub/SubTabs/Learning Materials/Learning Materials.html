@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Materials</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Learning Materials.css">
+</head>
+
+<body>
+    <div class="background"></div>
+    
+<header class="header">
+        <img src="../../Images/Hamburger Icon.png" alt="Hamburger Icon" class="Hamburger-Icon">
+        <div class="logo-container">
+            <a href="../Learning Materials/Learning Materials.html" class="main-nav">
+                <img src="../../Images/Learning Modules.png" alt="Learning Modules" class="Learning-Modules-Icon">
+                Learning Materials
+            </a>
+            <div class="hidden-nav">
+                <a href="../Documents/Documents.html" class="nav-item">
+                    <img src="../../Images/Document Icon.png" alt="Documents" class="Document-Icon">
+                    Documents
+                </a>
+                <a href="../Schedules/Schedules.html" class="nav-item">
+                    <img src="../../Images/Schedule Icon.png" alt="Schedule" class="Schedule-Icon">
+                    Schedule
+                </a>
+            </div>
+        </div>
+    </header>
+
+    
+    <main class="main">
+        <div class="Learning-Materials-List">
+            <div class="semester-title first-sem" data-semester="1">1ST SEMESTER</div>
+            <div class="semester-subjects" data-semester="1">
+                <div class="subject">NCM 213A</div>
+                <div class="subject">NUR 213</div>
+                <div class="subject">NCM 212A</div>
+            </div>
+            <div class="semester-title second-sem" data-semester="2">2ND SEMESTER</div>
+            <div class="semester-subjects" data-semester="2">
+                <div class="subject">NCM 214A</div>
+                <div class="subject">NUR 215</div>
+            </div>
+        </div>
+        
+        <div class="Learning-Materials-Main">
+            <div class="First-Semester-Main" style="display: none;">
+                <div class="subject-title">NCM 213A</div>
+                <div class="subject-title">NUR 213</div>
+                <div class="subject-title">NCM 212A</div>
+            </div>
+            <div class="Second-Semester-Main" style="display: none;">
+                <div class="subject-title">
+                    <p>NCM 214A</p>
+                    <div onclick="window.open('https://docs.google.com/document/d/1jZMpRl8cZqPORTvave7bFIErHRX5hpaRgG29YIYKDJA/edit?usp=sharing', '_blank');" class="onclick-text">
+                        <img src="https://drive.google.com/thumbnail?id=1jZMpRl8cZqPORTvave7bFIErHRX5hpaRgG29YIYKDJA&sz=w400" alt="NCM 214A">
+                        <div class="text-container">
+                            <p class="full-text">A structured document outlining patient problems, goals, nursing interventions, and evaluation methods to ensure holistic and evidence-based nursing care.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="subject-title">
+                    <p>NUR 215</p>
+                    <div onclick="window.open('https://docs.google.com/document/d/1DVtep9SbhdzzShZjgeP5s_GFCvJyg5x0rsh2AvE2n6Q/edit?usp=sharing', '_blank');" class="onclick-text">
+                        <img src="https://drive.google.com/thumbnail?id=1DVtep9SbhdzzShZjgeP5s_GFCvJyg5x0rsh2AvE2n6Q&sz=w400" alt="NCM 215">
+                        <div class="text-container">
+                            <p class="full-text">An instructional unit discussing how informatics tools and systems enhance evidence-based decision-making and patient care in nursing practice.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+<script>
+    const semesterTitles = document.querySelectorAll('.semester-title');
+    
+    semesterTitles.forEach(title => {
+        title.addEventListener('click', () => {
+            const semester = title.dataset.semester;
+            const subjectsContainer = document.querySelector(`.semester-subjects[data-semester="${semester}"]`);
+            
+            if (subjectsContainer) {
+                subjectsContainer.style.display = subjectsContainer.style.display === 'block' ? 'none' : 'block';
+                const firstSemesterMain = document.querySelector('.First-Semester-Main');
+                const secondSemesterMain = document.querySelector('.Second-Semester-Main');
+                
+                if (semester === "1") {
+                    firstSemesterMain.style.display = 'block';
+                    secondSemesterMain.style.display = 'none';
+                } else if (semester === "2") {
+                    firstSemesterMain.style.display = 'none';
+                    secondSemesterMain.style.display = 'block';
+                }
+            }
+            
+            // Add the "clicked" class to the clicked title and remove it from others
+            semesterTitles.forEach(t => t.classList.remove('clicked'));
+            title.classList.add('clicked');
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+    const subjectTitles = document.querySelectorAll('.subject-title');
+    let currentlyOpen = null;
+
+    subjectTitles.forEach(title => {
+        title.addEventListener('click', function() {
+            const onclickText = this.querySelector('.onclick-text'); // Use querySelector to find the nested element
+
+            if (onclickText) {
+                if (currentlyOpen === this) {
+                    onclickText.style.display = 'none';
+                    currentlyOpen = null;
+                } else {
+                    if (currentlyOpen) {
+                        const openOnclickText = currentlyOpen.querySelector('.onclick-text');
+                        if (openOnclickText) {
+                            openOnclickText.style.display = 'none';
+                        }
+                    }
+                    onclickText.style.display = 'block';
+                    currentlyOpen = this;
+                }
+            }
+        });
+    });
+});
+
+const hamburgerIcon = document.querySelector('.Hamburger-Icon');
+            const hiddenNav = document.querySelector('.hidden-nav');
+
+            hamburgerIcon.addEventListener('click', () => {
+                hiddenNav.style.display = hiddenNav.style.display === 'block' ? 'none' : 'block';
+            });
+
+</script>
+
+</html>
