@@ -20,12 +20,12 @@
             <img src="../../Images/Navicare with Logo.png" alt="Navicare Logo" class="navicare-logo">
         </div>
     </header>
-    
+
     <div class="calendar-title">
         <img src="../../Images/Schedule Icon.png" alt="Calendar Icon">
         <span>Schedule</span>
     </div>
-    
+
     <div class="calendar-container">
         <div class="calendar-header-container">
             <div class="month-navigation">
@@ -47,6 +47,25 @@
             </div>
             <div class="add-note-input">
                 <textarea id="noteInput" placeholder="Write something..."></textarea>
+                <button id="addNoteButton">Add Note</button>
+            </div>
+            <div class="note-display">
+                <h4>Notes:</h4>
+                <ul id="noteList"></ul>
+            </div>
+        </div>
+        <div class="add-file-container">
+            <div class="add-file-header">
+                <span class="file-icon">&#128196;</span>
+                ADD FILE
+            </div>
+            <div class="add-file-input">
+                <input type="file" id="fileInput">
+                <button id="addFileButton">Upload File</button>
+            </div>
+            <div class="file-display">
+                <h4>Uploaded Files:</h4>
+                <ul id="fileList"></ul>
             </div>
         </div>
         <div class="schedule-input">
@@ -68,7 +87,7 @@
             </ul>
         </div>
     </div>
-    
+
     <script>
         const prevMonthBtn = document.getElementById('prevMonth');
         const nextMonthBtn = document.getElementById('nextMonth');
@@ -80,39 +99,73 @@
         const addEventBtn = document.getElementById('addEvent');
         const todaysEventsList = document.getElementById('todaysEvents');
         const allEventsList = document.getElementById('allEvents');
-        
+
         let currentDate = new Date();
         let events = loadEvents();
-        
+
+        // New Elements for Notes
+        const noteInput = document.getElementById('noteInput');
+        const addNoteButton = document.getElementById('addNoteButton');
+        const noteList = document.getElementById('noteList');
+        let notes = loadNotes(); // Load notes from localStorage
+
+        // New Elements for Files
+        const fileInput = document.getElementById('fileInput');
+        const addFileButton = document.getElementById('addFileButton');
+        const fileList = document.getElementById('fileList');
+        let files = loadFiles(); // Load files from localStorage
+
+        // --- Local Storage Functions ---
         function loadEvents() {
             const storedEvents = localStorage.getItem('scheduleEvents');
             return storedEvents ? JSON.parse(storedEvents) : [];
         }
-        
+
         function saveEvents() {
             localStorage.setItem('scheduleEvents', JSON.stringify(events));
             displayAllEvents();
             displayTodaysEvents();
             renderCalendar();
         }
-        
+
+        function loadNotes() {
+            const storedNotes = localStorage.getItem('scheduleNotes');
+            return storedNotes ? JSON.parse(storedNotes) : [];
+        }
+
+        function saveNotes() {
+            localStorage.setItem('scheduleNotes', JSON.stringify(notes));
+            displayNotes();
+        }
+
+        function loadFiles() {
+            const storedFiles = localStorage.getItem('scheduleFiles');
+            return storedFiles ? JSON.parse(storedFiles) : [];
+        }
+
+        function saveFiles() {
+            localStorage.setItem('scheduleFiles', JSON.stringify(files));
+            displayFiles();
+        }
+
+        // --- Calendar Rendering Functions ---
         function renderCalendar() {
             calendarGrid.innerHTML = '';
             const year = currentDate.getFullYear();
             const month = currentDate.getMonth();
-            const firstDayOfMonth = new Date(year, month, 1).getDay(); // 0 for Sunday, 6 for Saturday
+            const firstDayOfMonth = new Date(year, month, 1).getDay();
             const daysInMonth = new Date(year, month + 1, 0).getDate();
-            
+
             currentMonthDisplay.textContent = new Date(year, month).toLocaleDateString('en-US', {
                 year: 'numeric',
                 month: 'long'
             });
-            
+
             for (let i = 0; i < firstDayOfMonth; i++) {
                 const emptyDay = document.createElement('div');
                 calendarGrid.appendChild(emptyDay);
             }
-            
+
             for (let day = 1; day <= daysInMonth; day++) {
                 const dayElement = document.createElement('div');
                 dayElement.classList.add('day');
@@ -125,20 +178,20 @@
                     dayElement.classList.add('has-event');
                 }
                 dayElement.addEventListener('click', () => {
-                    // Correctly format the date for the input field (YYYY-MM-DD)
                     const selectedYear = date.getFullYear();
-                    const selectedMonth = (date.getMonth() + 1).toString().padStart(2, '0'); // Month is 0-indexed, so add 1
+                    const selectedMonth = (date.getMonth() + 1).toString().padStart(2, '0');
                     const selectedDay = date.getDate().toString().padStart(2, '0');
                     eventDateInput.value = `${selectedYear}-${selectedMonth}-${selectedDay}`;
                 });
                 calendarGrid.appendChild(dayElement);
             }
         }
-        
+
         function hasEventOnDate(date) {
             return events.some(event => new Date(event.date).toDateString() === date.toDateString());
         }
-        
+
+        // --- Event Display Functions ---
         function displayTodaysEvents() {
             todaysEventsList.innerHTML = '';
             const today = new Date().toDateString();
@@ -160,7 +213,7 @@
                 todaysEventsList.innerHTML = '<li class="no-events">No events today.</li>';
             }
         }
-        
+
         function displayAllEvents() {
             allEventsList.innerHTML = '';
             events.sort((a, b) => new Date(a.date) - new Date(b.date));
@@ -181,19 +234,20 @@
                 allEventsList.innerHTML = '<li class="no-events">No events yet.</li>';
             }
         }
-        
+
         function formatTime(timeString) {
             const [hours, minutes] = timeString.split(':');
             const period = parseInt(hours) >= 12 ? 'PM' : 'AM';
             const formattedHours = parseInt(hours) % 12 === 0 ? 12 : parseInt(hours) % 12;
             return `${formattedHours}:${minutes} ${period}`;
         }
-        
+
+        // --- Event Handling ---
         addEventBtn.addEventListener('click', () => {
             const date = eventDateInput.value;
             const time = eventTimeInput.value;
             const description = eventDescriptionInput.value.trim();
-            
+
             if (date && description) {
                 const newEvent = {
                     id: Date.now(),
@@ -210,25 +264,76 @@
                 alert('Please select a date and enter a description.');
             }
         });
-        
+
         function deleteEvent(eventId) {
             events = events.filter(event => event.id.toString() !== eventId);
             saveEvents();
         }
-        
+
         prevMonthBtn.addEventListener('click', () => {
             currentDate.setMonth(currentDate.getMonth() - 1);
             renderCalendar();
         });
-        
+
         nextMonthBtn.addEventListener('click', () => {
             currentDate.setMonth(currentDate.getMonth() + 1);
             renderCalendar();
         });
-        
+
+        // --- Note Handling ---
+        addNoteButton.addEventListener('click', () => {
+            const text = noteInput.value.trim();
+            if (text) {
+                const newNote = {
+                    id: Date.now(),
+                    text: text
+                };
+                notes.push(newNote);
+                noteInput.value = '';
+                saveNotes();
+            }
+        });
+
+        function displayNotes() {
+            noteList.innerHTML = '';
+            notes.forEach(note => {
+                const li = document.createElement('li');
+                li.textContent = note.text;
+                noteList.appendChild(li);
+            });
+        }
+
+        // --- File Handling ---
+        addFileButton.addEventListener('click', () => {
+            const file = fileInput.files[0];
+            if (file) {
+                const newFile = {
+                    id: Date.now(),
+                    name: file.name
+                    // You might want to store more file info (size, type) or the file itself (base64)
+                    // But for simplicity, we're just storing the name here
+                };
+                files.push(newFile);
+                fileInput.value = ''; // Clear the input
+                saveFiles();
+            }
+        });
+
+        function displayFiles() {
+            fileList.innerHTML = '';
+            files.forEach(file => {
+                const li = document.createElement('li');
+                li.textContent = file.name;
+                fileList.appendChild(li);
+            });
+        }
+
+        // --- Initial Load ---
         renderCalendar();
         displayAllEvents();
         displayTodaysEvents();
+        displayNotes();
+        displayFiles();
     </script>
 </body>
 

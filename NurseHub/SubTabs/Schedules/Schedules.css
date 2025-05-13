@@ -319,3 +319,227 @@ body {
     overflow-y: hidden; /* Hide vertical scrollbar until needed */
     min-height: 40px; /* Initial height */
 }
+
+.add-note-container,
+.add-file-container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    padding: 15px;
+    width: 90%;
+    max-width: 700px;
+    box-sizing: border-box;
+}
+
+.add-note-header,
+.add-file-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    color: #b81e63;
+    font-weight: bold;
+}
+
+.plus-icon,
+.file-icon {
+    font-size: 1.2em;
+    margin-right: 8px;
+}
+
+.add-note-input,
+.add-file-input {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.add-note-input textarea {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+.add-note-input button,
+.add-file-input button {
+    background-color: #b81e63;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.add-note-input button:hover,
+.add-file-input button:hover {
+    background-color: #961751;
+}
+
+.note-display h4,
+.file-display h4 {
+    margin-top: 15px;
+    color: #555;
+}
+
+.note-display ul,
+.file-display ul {
+    list-style: none;
+    padding: 0;
+}
+
+.note-display ul li,
+.file-display ul li {
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    padding: 8px;
+    margin-bottom: 5px;
+}
+
+/* Specific styling for the "Add Event" button */
+.schedule-input button#addEvent {
+    background-color: #5cb85c; /* Green */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.schedule-input button#addEvent:hover {
+    background-color: #4cae4c;
+}
+
+/* Style for the calendar buttons */
+.month-navigation button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+}
+
+.month-navigation button img {
+    height: 24px;
+    width: 24px;
+    vertical-align: middle;
+}
+
+/* Style for the calendar grid */
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.day {
+    padding: 10px;
+    border: 1px solid #eee;
+    text-align: center;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.day:hover {
+    background-color: #f0f0f0;
+}
+
+.day.today {
+    background-color: #b81e63;
+    color: white;
+    font-weight: bold;
+}
+
+.day.has-event {
+    background-color: #ffdd99; /* Light orange for days with events */
+}
+
+/* Style for the event lists */
+.schedule-display h3 {
+    margin-top: 20px;
+    color: #555;
+}
+
+.schedule-display ul {
+    list-style: none;
+    padding: 0;
+}
+
+.schedule-display ul li {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.event-details {
+    flex-grow: 1;
+}
+
+.event-actions button {
+    background-color: #d9534f; /* Red for delete */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
+}
+
+.event-actions button:hover {
+    background-color: #c9302c;
+}
+
+.schedule-input {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    padding: 15px;
+    width: 90%;
+    max-width: 700px;
+    box-sizing: border-box;
+}
+
+.schedule-input h3 {
+    color: #b81e63;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.schedule-input label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+    font-weight: bold;
+}
+
+.schedule-input input[type="date"],
+.schedule-input input[type="time"],
+.schedule-input textarea {
+    width: calc(100% - 12px);
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.schedule-input textarea {
+    resize: vertical;
+    min-height: 60px;
+}
